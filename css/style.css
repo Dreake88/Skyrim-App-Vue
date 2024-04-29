@@ -44,3 +44,37 @@ i.fa {
     justify-content: center;
     padding: 0 10px;
 }
+.app__logo {
+    padding: 20px 0;
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+}
+.app__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    overflow: auto;
+}
+.app__btn {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50px;
+    width: 240px;
+    background-color: #595757;
+    box-shadow: 0px 4px 0px 0px #494949;
+    margin: 0 auto;
+    border-radius: 30px;
+    text-decoration: none;
+    font-style: 16px;
+    line-height: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.app__btn:focus {
+    outline: none;
+}
