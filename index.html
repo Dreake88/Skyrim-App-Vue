@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-    <title>Document</title>
+    <title>Какой ты расы в Skyrim</title>
 </head>
 <body>
 <div class="main">
@@ -82,13 +82,13 @@
     <div class="app" v-show="showQuestions">
         <div class="app__header">
             <div class="app__header-inner">
-                <div class="app_count"># 1</div>
-                <div class="app__text">Tekst vopsosa</div>
+                <div class="app_count"># {{ number+1 }}</div>
+                <div class="app__text">{{ questions[number][0] }}</div>
             </div>
         </div>
         <div class="app__body">
-            <button class="app__btn">
-                <div class="app__btn-text">Otvet 1</div>
+            <button class="app__btn" v-for="(answer, i) in questions[number][1]" v-on:click="nextQuestions(questions[number][2][i])">
+                <div class="app__btn-text">{{ answer }}</div>
             </button>
         </div>
     </div>
@@ -219,6 +219,15 @@
                 this.showResult = true
                 this.resultRace = race
             },
+            nextQuestions(answer) {
+                if(this.number == 25) {
+                    this.number = 0
+                    // this.endGame();
+                } else {
+                    this.number++
+                }
+                eval(answer)
+            }
         }
     }
     )
