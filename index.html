@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="app__body-bottom">
-                    <button class="app__btn btn__back btn__achivment">
+                    <button class="app__btn btn__back btn__achivment" v-on:click="goToMain">
                         <i class="fa fa-reply" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -109,24 +109,23 @@
         </div>
     </div>
 
-    <div class="app results" v-show="showResult" data-fraction="winterhold">
+    <div class="app results" v-show="showResult" v-bind:data-fraction="resultFraction">
         <div class="app__body">
             <div class="app__results-inner">
-                <div class="results__title">
-                    <div class="results__img">
-                        <img src="/img/winterhold_logo.png" alt="">
-                    </div>
-                    <div class="results__text-box">
-                        <p class="results__text">Далеко-далеко</p>
-                        <p class="results__text-quote">Цитата 1</p>
-                        <p class="results__text-quote">Цитата 2</p>
-                        <p class="results__text-author">Автор</p>
-                    </div>
-                    <div>
-                        <button class="app__btn btn__back btn__winterhold" v-on:click="goToMain">
-                            <i class="fa fa-reply" aria-hidden="true"></i>
-                        </button>
-                    </div>
+                <div class="results__title">{{ results[resultFraction].name }}</div>
+                <div class="results__img">
+                    <img v-bind:src="'img/'+resultFraction+'_logo.png'" alt="">
+                </div>
+                <div class="results__text-box">
+                    <p class="results__text">{{ results[resultFraction].description }}</p>
+                    <p class="results__text-quote">{{ results[resultFraction].quote1 }}</p>
+                    <p class="results__text-quote">{{ results[resultFraction].quote2 }}</p>
+                    <p class="results__text-author">{{ results[resultFraction].author }}</p>
+                </div>
+                <div>
+                    <button v-bind:class="'app__btn btn__back btn__'+resultFraction" v-on:click="goToAchivments">
+                        <i class="fa fa-reply" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -167,7 +166,7 @@
             totalGames: localStorage.getItem('skyrimTotalGames') ? localStorage.getItem('skyrimTotalGames') : 0,
             questions: questions,
             results: results,
-            resultRace: 'bb',
+            resultFraction: 'bb',
         },
         methods: {
             goToMain() {
@@ -211,22 +210,102 @@
                 this.showQuestions = true
                 this.showResult = false
             },
-            goToResults(race) {
+            goToResults(fraction) {
                 this.showMain = false
                 this.showSocial = false
                 this.showAchivments = false
                 this.showQuestions = false
                 this.showResult = true
-                this.resultRace = race
+                this.resultFraction = fraction
             },
             nextQuestions(answer) {
-                if(this.number == 25) {
+                if(this.number == 5) {
                     this.number = 0
-                    // this.endGame();
+                    this.endGame();
                 } else {
                     this.number++
                 }
                 eval(answer)
+            },
+            endGame() {
+                this.totalGames++;
+                localStorage.setItem('skyrimTotalGames', this.totalGames)
+                //Братья Бури
+                if(this.score.bb > this.score.imperial && 
+                    this.score.bb > this.score.winterhold && 
+                    this.score.bb > this.score.thieves && 
+                    this.score.bb > this.score.rassvet && 
+                    this.score.bb > this.score.vampire && 
+                    this.score.bb > this.score.tb) {
+                    this.goToResults('bb')
+                    this.totalGame.bb++
+                }
+                //Имперский легион
+                else if (this.score.imperial > this.score.bb && 
+                        this.score.imperial > this.score.winterhold && 
+                        this.score.imperial > this.score.thieves && 
+                        this.score.imperial > this.score.rassvet && 
+                        this.score.imperial > this.score.vampire && 
+                        this.score.imperial > this.score.tb) {
+                    this.goToResults('imperial')
+                    this.totalGame.imperial++
+                }
+                //Коллегия Винтерхолда
+                else if (this.score.winterhold > this.score.bb &&
+                        this.score.winterhold > this.score.imperial && 
+                        this.score.winterhold > this.score.thieves && 
+                        this.score.winterhold > this.score.rassvet && 
+                        this.score.winterhold > this.score.vampire && 
+                        this.score.winterhold > this.score.tb) {
+                    this.goToResults('winterhold')
+                    this.totalGame.winterhold++
+                }
+                //Гильдия Воров
+                else if (this.score.thieves > this.score.bb &&
+                        this.score.thieves > this.score.winterhold &&
+                        this.score.thieves > this.score.imperial && 
+                        this.score.thieves > this.score.rassvet && 
+                        this.score.thieves > this.score.vampire && 
+                        this.score.thieves > this.score.tb) {
+                    this.goToResults('thieves')
+                    this.totalGame.thieves++
+                }
+                //Стража Рассвета
+                else if (this.score.rassvet > this.score.bb && 
+                        this.score.rassvet > this.score.winterhold && 
+                        this.score.rassvet > this.score.thieves && 
+                        this.score.rassvet > this.score.imperial && 
+                        this.score.rassvet > this.score.vampire && 
+                        this.score.rassvet > this.score.tb) {
+                    this.goToResults('rassvet')
+                    this.totalGame.rassvet++
+                }
+                //Клан Волкихар
+                else if (this.score.vampire > this.score.bb && 
+                        this.score.vampire > this.score.winterhold && 
+                        this.score.vampire > this.score.thieves && 
+                        this.score.vampire > this.score.rassvet && 
+                        this.score.vampire > this.score.imperial && 
+                        this.score.vampire > this.score.tb) {
+                    this.goToResults('vampire')
+                    this.totalGame.vampire++
+                }
+                //Темное братство
+                else if (this.score.tb > this.score.bb && 
+                         this.score.tb > this.score.winterhold && 
+                         this.score.tb > this.score.thieves && 
+                         this.score.tb > this.score.rassvet && 
+                         this.score.tb > this.score.vampire && 
+                         this.score.tb > this.score.imperial) {
+                    this.goToResults('tb')
+                    this.totalGame.tb++
+                }
+                else {
+                    this.goToResults('bb')
+                    this.totalGame.bb++
+                }
+
+                localStorage.setItem('skyrimTotalGame', JSON.stringify(this.totalGame))
             }
         }
     }
