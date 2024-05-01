@@ -16,15 +16,15 @@
             <img class="app__logo" src="img/logo.png">
         </div>
         <div class="app__body">
-            <button class="app__btn">
+            <button class="app__btn" v-on:click="goToQuestions">
                 <i class="fa fa-play-circle-o"></i>
                 <div class="app__btn-text">Начать</div>
             </button>
-            <button class="app__btn">
+            <button class="app__btn" v-on:click="goToAchivments">
                 <i class="fa fa-trophy"></i>
                 <div class="app__btn-text">Достижения</div>
             </button>
-            <button class="app__btn">
+            <button class="app__btn" v-on:click="goToSocial">
                 <i class="fa fa-user"></i>
                 <div class="app__btn-text">Автор</div>
             </button>
@@ -103,7 +103,7 @@
                 <i class="fa fa-telegram" aria-hidden="true"></i>
                 <div class="app__btn-text">Telegram</div>
             </a>
-            <button class="app__btn btn__back">
+            <button class="app__btn btn__back" v-on:click="goToMain">
                 <i class="fa fa-reply" aria-hidden="true"></i>
             </button>
         </div>
@@ -123,7 +123,7 @@
                         <p class="results__text-author">Автор</p>
                     </div>
                     <div>
-                        <button class="app__btn btn__back btn__winterhold">
+                        <button class="app__btn btn__back btn__winterhold" v-on:click="goToMain">
                             <i class="fa fa-reply" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -168,6 +168,57 @@
             questions: questions,
             results: results,
             resultRace: 'bb',
+        },
+        methods: {
+            goToMain() {
+                this.showMain = true
+                this.showSocial = false
+                this.showAchivments = false
+                this.showQuestions = false
+                this.showResult = false
+            },
+            goToSocial() {
+                this.showMain = false
+                this.showSocial = true
+                this.showAchivments = false
+                this.showQuestions = false
+                this.showResult = false
+            },
+            goToAchivments() {
+                if(this.totalGames > 0) {
+                this.showMain = false
+                this.showSocial = false
+                this.showAchivments = true
+                this.showQuestions = false
+                this.showResult = false
+                } else {
+                    this.goToQuestions()
+                }
+            },
+            goToQuestions() {
+                this.score = {
+                    "bb": 0,
+                    "imperial": 0,
+                    "winterhold": 0,
+                    "thieves": 0,
+                    "rassvet": 0,
+                    "vampire": 0,
+                    "tb": 0,
+                }
+                this.showMain = false
+                this.showSocial = false
+                this.showAchivments = false
+                this.showQuestions = true
+                this.showResult = false
+            },
+            goToResults(race) {
+                this.showMain = false
+                this.showSocial = false
+                this.showAchivments = false
+                this.showQuestions = false
+                this.showResult = true
+                this.resultRace = race
+            },
         }
     }
     )
