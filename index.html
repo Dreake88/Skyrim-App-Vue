@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="main">
-    <!-- <div class="app">
+    <div class="app" v-show="showMain">
         <div class="app__header">
             <img class="app__logo" src="img/logo.png">
         </div>
@@ -33,8 +33,9 @@
                 <div class="app__btn-text">Звук</div>
             </button>
         </div>
-    </div> -->
-    <!-- <div class="app achivments">
+    </div>
+
+    <div class="app achivments" v-show="showAchivments">
         <div class="app__body">
             <div class="app__body-inner">
                 <h2 class="app__body-title">
@@ -76,8 +77,9 @@
                 </div>
             </div>
         </div>
-    </div> -->
-    <!-- <div class="app">
+    </div>
+
+    <div class="app" v-show="showQuestions">
         <div class="app__header">
             <div class="app__header-inner">
                 <div class="app_count"># 1</div>
@@ -89,8 +91,9 @@
                 <div class="app__btn-text">Otvet 1</div>
             </button>
         </div>
-    </div> -->
-    <!-- <div class="app">
+    </div>
+
+    <div class="app" v-show="showSocial">
         <div class="app__body">
             <a target="_blank" href="https://github.com/ScripThor" class="app__btn">
                 <i class="fa fa-github" aria-hidden="true"></i>
@@ -104,8 +107,9 @@
                 <i class="fa fa-reply" aria-hidden="true"></i>
             </button>
         </div>
-    </div> -->
-    <div class="app results" data-fraction="winterhold">
+    </div>
+
+    <div class="app results" v-show="showResult" data-fraction="winterhold">
         <div class="app__body">
             <div class="app__results-inner">
                 <div class="results__title">
@@ -132,5 +136,41 @@
 
 <script src="/js/vue.js"></script>
 <script src="/js/const.js"></script>
+<script>
+    let app = new Vue({
+        el: ".main",
+        data: {
+            showMain: true,
+            showSocial: false,
+            showAchivments: false,
+            showQuestions: false,
+            showResult: false,
+            number: 0,
+            score: {
+                "bb": 0,
+                "imperial": 0,
+                "winterhold": 0,
+                "thieves": 0,
+                "rassvet": 0,
+                "vampire": 0,
+                "tb": 0,
+            },
+            totalGame: localStorage.getItem('skyrimTotalGame') ? JSON.parse(localStorage.getItem('skyrimTotalGame')) : {
+                "bb": 0,
+                "imperial": 0,
+                "winterhold": 0,
+                "thieves": 0,
+                "rassvet": 0,
+                "vampire": 0,
+                "tb": 0,
+            },
+            totalGames: localStorage.getItem('skyrimTotalGames') ? localStorage.getItem('skyrimTotalGames') : 0,
+            questions: questions,
+            results: results,
+            resultRace: 'bb',
+        }
+    }
+    )
+</script>
 </body>
 </html>
