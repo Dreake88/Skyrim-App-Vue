@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Yanone";
-    src: url(../fonts/YanoneKaffeesatz-Medium.ttf)
+    src: url(fonts/YanoneKaffeesatz-Medium.ttf)
 }
 * {
     box-sizing: border-box;
@@ -24,7 +24,7 @@ i.fa {
     }
 }
 .main {
-    background-image: url(../img/background__main.jpg);
+    background-image: url(img/background__main.jpg);
     background-repeat: repeat-x;
     animation: slide 90s linear infinite;
 }
@@ -237,24 +237,24 @@ i.fa {
     background-image: url(../img/bb_bg.jpg);
 }
 .app.results[data-fraction="imperial"] {
-    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(../img/imperial_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(img/imperial_bg.jpg);
 }
 .app.results[data-fraction="winterhold"] {
-    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(../img/winterhold_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(img/winterhold_bg.jpg);
     background-position: 15% 0;
 }
 .app.results[data-fraction="thieves"] {
-    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(../img/thieves_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(img/thieves_bg.jpg);
 }
 .app.results[data-fraction="rassvet"] {
-    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(../img/rassvet_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 70%), rgba(0, 0, 0, 0.4)), url(img/rassvet_bg.jpg);
 }
 .app.results[data-fraction="vampire"] {
-    background-image: linear-gradient(rgb(0 0 0 / 65%), rgba(0, 0, 0, 0.3)), url(../img/vampire_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 65%), rgba(0, 0, 0, 0.3)), url(img/vampire_bg.jpg);
     background-position: 15% 0;
 }
 .app.results[data-fraction="tb"] {
-    background-image: linear-gradient(rgb(0 0 0 / 65%), rgba(0, 0, 0, 0.1)), url(../img/tb_bg.jpg);
+    background-image: linear-gradient(rgb(0 0 0 / 65%), rgba(0, 0, 0, 0.1)), url(img/tb_bg.jpg);
     background-position: 30% 0;
 }
 .btn__bb {
