@@ -64,13 +64,14 @@ i.fa {
     justify-content: center;
     text-align: center;
     min-height: 50px;
-    width: 240px;
+    width: 290px;
+    letter-spacing: 1.4px;
     background-color: #595757;
     box-shadow: 0px 4px 0px 0px #494949;
     margin: 0 auto;
     border-radius: 30px;
     text-decoration: none;
-    font-style: 16px;
+    font-size: 16px;
     line-height: 20px;
     color: #fff;
     text-transform: uppercase;
@@ -185,7 +186,7 @@ i.fa {
     margin-bottom: 10px;
 }
 .app__text {
-    font-size: 18px;
+    font-size: 22px;
 }
 .results .app__body {
     justify-content: space-between;
@@ -196,7 +197,7 @@ i.fa {
 }
 .results__title {
     text-transform: uppercase;
-    font-style: 30px;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 20px;
     padding-top: 20px;
@@ -215,6 +216,17 @@ i.fa {
 }
 .results__text {
     margin-bottom: 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+.results__text-quote {
+    background-color: #0000009e;
+    padding: 10px;
+    border-radius: 17px;
+    letter-spacing: 0.3px;
+}
+.results__text-author {
+    text-align: center;
 }
 .app.results {
     animation: none;
