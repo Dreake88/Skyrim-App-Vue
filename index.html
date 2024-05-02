@@ -45,29 +45,29 @@
                 <div class="app__body-top">
                     <div class="app__card">
                         <div class="app__card-text">Счет</div>
-                        <div class="app__card-count">0</div>
+                        <div class="app__card-count">{{ totalScore }}</div>
                     </div>
                     <div class="app__card">
-                        <div class="app__card-text">Открыто персонажей</div>
-                        <div class="app__card-count">0</div>
+                        <div class="app__card-text">Открыто фракций</div>
+                        <div class="app__card-count">{{ openFraction }}</div>
                     </div>
                     <div class="app__card">
                         <div class="app__card-text">Всего игр</div>
-                        <div class="app__card-count">0</div>
+                        <div class="app__card-count">{{ totalGames }}</div>
                     </div>
                     <div class="app__card">
-                        <div class="app__card-text">Любимый персонаж</div>
-                        <div class="app__card-count">0</div>
+                        <div class="app__card-text">Любимая фракция</div>
+                        <div class="app__card-count">{{ favoriteFraction }}</div>
                     </div>
                 </div>
                 <div class="app__body-middle">
-                    <div class="app__result">
+                    <div class="app__result" v-for="(fraction, k) in results" v-show="showResultFraction[k]" v-on:click="goToResults(k)">
                         <div class="app__result-score">
                             <i class="fa fa-star" aria-hidden="true"></i>
-                            <div class="app__result-count">100</div>
+                            <div class="app__result-count">{{ fraction.points }}</div>
                         </div>
-                        <div class="app__result-name">Довакин</div>
-                        <div class="app__result-amount">5</div>
+                        <div class="app__result-name">{{ fraction.name }}</div>
+                        <div class="app__result-amount">{{ totalGame[k] }}</div>
                     </div>
                 </div>
                 <div class="app__body-bottom">
@@ -306,6 +306,42 @@
                 }
 
                 localStorage.setItem('skyrimTotalGame', JSON.stringify(this.totalGame))
+            }
+        },
+        computed: {
+            totalScore() {
+                let score=0
+                for(let i in this.totalGame) {
+                    score+=(this.totalGame[i]*results[i].points)
+                }
+                return score
+            },
+            openFraction() {
+                let count=0
+                for(let i in this.totalGame) {
+                    if(this.totalGame[i]>0) count++
+                }
+                return count
+            },
+            favoriteFraction() {
+                let max='bb'
+                for(let i in this.totalGame) {
+                    if(this.totalGame[i]>this.totalGame[max]) {
+                        max=i
+                    }
+                }
+                return results[max].name
+            },
+            showResultFraction() {
+                return {
+                    'bb': this.totalGame.bb > 0 ? true : false,
+                    'imperial': this.totalGame.imperial > 0 ? true : false,
+                    'winterhold': this.totalGame.winterhold > 0 ? true : false,
+                    'thieves': this.totalGame.thieves > 0 ? true : false,
+                    'rassvet': this.totalGame.rassvet > 0 ? true : false,
+                    'vampire': this.totalGame.vampire > 0 ? true : false,
+                    'tb': this.totalGame.tb > 0 ? true : false,
+                }
             }
         }
     }
